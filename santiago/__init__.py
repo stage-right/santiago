@@ -1,3 +1,5 @@
+import requests
+
 BASE_URI = 'https://api.digitalocean.com/v2/'
 
 def request(endpoint, headers={}, params={}, method="get"):
