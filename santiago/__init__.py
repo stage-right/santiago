@@ -14,5 +14,8 @@ def all_domains(api_key=None):
 def all_droplets(api_key=None):
     return request("/droplets/", headers(api_key)).json()['droplets']
 
+def all_ssh_keys(api_key=None):
+    return request("/account/keys", headers(api_key)).json()['ssh_keys']
+
 def main():
     return "Hello World"
