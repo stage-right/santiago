@@ -14,6 +14,9 @@ def all_domains(api_key=None):
 def new_domain(domain, api_key=None):
     return request("/domains/", headers(api_key), domain, "post").json()['domain']
 
+def all_domain_records(domain, api_key=None):
+    return request('/domains/%s/records/' % domain, headers(api_key)).json()['domain_records']
+
 def all_droplets(api_key=None):
     return request("/droplets/", headers(api_key)).json()['droplets']
 
