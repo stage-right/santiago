@@ -8,24 +8,28 @@ def request(endpoint, headers={}, params={}, method="get"):
 def headers(api_key=None):
     return {'Content-Type': 'application/json', 'Authorization': "Bearer %s" % api_key}
 
+# domains
 def all_domains(api_key=None):
     return request("/domains/", headers(api_key)).json()['domains']
 
 def new_domain(domain, api_key=None):
     return request("/domains/", headers(api_key), domain, "post").json()['domain']
 
-def all_domain_records(domain, api_key=None):
-    return request('/domains/%s/records/' % domain, headers(api_key)).json()['domain_records']
+# subdomains
+def all_domain_records(domain_id, api_key=None):
+    return request('/domains/%s/records/' % domain_id, headers(api_key)).json()['domain_records']
 
 def new_domain_record(domain_id, record, api_key=None):
     return request('/domains/%s/records/' % domain_id, headers(api_key), record, "post").json()['domain_record']
 
+# droplets
 def all_droplets(api_key=None):
     return request("/droplets/", headers(api_key)).json()['droplets']
 
 def new_droplet(droplet, api_key=None):
     return request("/droplets/", headers(api_key), droplet, "post").json()['droplet']
 
+# ssh keys
 def all_ssh_keys(api_key=None):
     return request("/account/keys", headers(api_key)).json()['ssh_keys']
 
