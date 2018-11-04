@@ -29,6 +29,9 @@ def all_droplets(api_key=None):
 def new_droplet(droplet, api_key=None):
     return request("/droplets/", headers(api_key), droplet, "post").json()['droplet']
 
+def destroy_droplet(droplet_id, api_key=None):
+    return request("/droplets/%s" % droplet_id, headers(api_key), {}, "delete")
+
 # ssh keys
 def all_ssh_keys(api_key=None):
     return request("/account/keys", headers(api_key)).json()['ssh_keys']
