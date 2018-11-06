@@ -23,7 +23,7 @@ def new_domain_record(domain_id, record, api_key=None):
     return request('/domains/%s/records/' % domain_id, headers(api_key), record, "post").json()['domain_record']
 
 def destroy_domain_record(domain_id, record_id, api_key=None):
-    return request('/domains/%s/records/%s' % (domain_id, record_id), method='DELETE')
+    return request('/domains/%s/records/%s' % (domain_id, record_id), headers(api_key), {}, method='delete')
 
 # droplets
 def all_droplets(api_key=None):
