@@ -1,13 +1,17 @@
 from cmd import Cmd
 from sys import argv
 
-class SantiagoCmd(Cmd):
-    def do_hello(self, args):
-        print "Hello world"
+import santiago
 
+class DropletCmd(Cmd):
+    def do_list(self, args):
+        print(santiago.all_droplets(args))
+
+class SantiagoCmd(Cmd):
     def do_quit(self, args):
-        print "goodbye cruel world"
         raise SystemExit
+    def do_droplet(self, args):
+        DropletCmd().onecmd(args)
 
 if __name__ == '__main__':
     shell = SantiagoCmd()
