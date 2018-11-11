@@ -6,6 +6,9 @@ import santiago
 class DropletCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_droplets(args))
+    def do_create(self, args):
+        droplet_args = args.split(" ")[1:-1]
+        print(santiago.create_droplet(make_droplet(droplet_args)), args.split(" ")[-1])
 
 class SantiagoCmd(Cmd):
     def do_quit(self, args):
