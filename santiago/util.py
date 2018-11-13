@@ -9,6 +9,8 @@ class DropletCmd(Cmd):
     def do_create(self, args):
         droplet_args = args.split(" ")[1:-1]
         print(santiago.create_droplet(make_droplet(droplet_args)), args.split(" ")[-1])
+    def do_delete(self, args):
+        print(santiago.destroy_droplet(args.split(" ")[0], args.split(" ")[-1]))
 
 class SantiagoCmd(Cmd):
     def do_quit(self, args):
