@@ -3,6 +3,25 @@ from sys import argv
 
 import santiago
 
+def make_droplet(name, size, image, region,
+                ssh_key_ids=None, virtio=True, private_networking=False,
+                backups_enabled=False, user_data=None, ipv6=False):
+    droplet = {
+        'name': str(name),
+        'size': str(size),
+        'image': str(image),
+        'region': str(region),
+        'virtio': str(virtio).lower(),
+        'ipv6': str(ipv6).lower(),
+        'private_networking': str(private_networking).lower(),
+        'backups': str(backups_enabled).lower(),
+    }
+    if user_data:
+        droplet['user_data'] = user_data
+    if ssh_key_ids:
+        droplet['ssh_keys'] = ssh_key_ids.split(",")
+    return droplet
+
 class DropletCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_droplets(args))
