@@ -22,9 +22,15 @@ def make_droplet(name, size, image, region,
         droplet['ssh_keys'] = ssh_key_ids.split(",")
     return droplet
 
+def make_domain(name, ip):
+    return {"name": name, "ip_address": ip}
+
 class DomainCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domains(args))
+    def do_create(self, args):
+        domain_args = args.split(" ")[:-1]
+        print(santiago.new_domain(make_domain(*domain_args), args.split(" ")[-1]))
 
 class DropletCmd(Cmd):
     def do_list(self, args):
