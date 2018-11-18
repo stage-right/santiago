@@ -25,12 +25,18 @@ def make_droplet(name, size, image, region,
 def make_domain(name, ip):
     return {"name": name, "ip_address": ip}
 
+class DomainRecordCmd(Cmd):
+    def do_list(self, args):
+        print(santiago.all_domain_records(*args.split(" ")))
+
 class DomainCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domains(args))
     def do_create(self, args):
         domain_args = args.split(" ")[:-1]
         print(santiago.new_domain(make_domain(*domain_args), args.split(" ")[-1]))
+    def do_records(self, args):
+        DomainRecordCmd().onecmd(args)
 
 class DropletCmd(Cmd):
     def do_list(self, args):
