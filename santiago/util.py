@@ -52,6 +52,8 @@ class SantiagoCmd(Cmd):
         raise SystemExit
     def do_droplet(self, args):
         DropletCmd().onecmd(args)
+    def do_domain(self, args):
+        DomainCmd().onecmd(args)
 
 if __name__ == '__main__':
     shell = SantiagoCmd()
