@@ -16,10 +16,10 @@ def make_droplet(name, size, image, region,
         'private_networking': str(private_networking).lower(),
         'backups': str(backups_enabled).lower(),
     }
-    if user_data:
-        droplet['user_data'] = user_data
-    if ssh_key_ids:
-        droplet['ssh_keys'] = ssh_key_ids.split(",")
+
+    if user_data: droplet['user_data'] = user_data
+    if ssh_key_ids: droplet['ssh_keys'] = ssh_key_ids.split(",")
+
     return droplet
 
 def make_domain(name, ip):
@@ -47,7 +47,7 @@ class DropletCmd(Cmd):
         droplet_args = args.split(" ")[:-1]
         print(santiago.new_droplet(make_droplet(*droplet_args), args.split(" ")[-1]))
     def do_delete(self, args):
-        print(santiago.destroy_droplet(args.split(" ")[0], args.split(" ")[-1]))
+        print(santiago.destroy_droplet(*args.split(" ")))
 
 class SantiagoCmd(Cmd):
     def do_quit(self, args):
