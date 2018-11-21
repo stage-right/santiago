@@ -28,6 +28,8 @@ def make_domain(name, ip):
 class DomainRecordCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domain_records(*args.split(" ")))
+    def do_delete(self, args):
+        print(santiago.destroy_domain_record(*args.split(" ")))
 
 class DomainCmd(Cmd):
     def do_list(self, args):
