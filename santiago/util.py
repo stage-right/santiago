@@ -25,9 +25,22 @@ def make_droplet(name, size, image, region,
 def make_domain(name, ip):
     return {"name": name, "ip_address": ip}
 
+def make_record(record_type, data, name=None, priority=None, port=None, weight=None):
+    record = {'data': data, 'type': record_type}
+
+    if name: record['name'] = name
+    if priority: record['priority'] = priority
+    if port: record['port'] = port
+    if weight: record['weight'] = weight
+
+    return record
+
 class DomainRecordCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domain_records(*args.split(" ")))
+    def do_create(self, args):
+        record_args = args.split(" ")[1:-1]
+        print(santiago.new_domain_record(args.split(" ")[0], make_record(*record_args), args.split(" ")[-1]))
     def do_delete(self, args):
         print(santiago.destroy_domain_record(*args.split(" ")))
 
@@ -37,7 +50,7 @@ class DomainCmd(Cmd):
     def do_create(self, args):
         domain_args = args.split(" ")[:-1]
         print(santiago.new_domain(make_domain(*domain_args), args.split(" ")[-1]))
-    def do_records(self, args):
+    def do_record(self, args):
         DomainRecordCmd().onecmd(args)
 
 class DropletCmd(Cmd):
