@@ -7,5 +7,8 @@ setup(
     entry_points={
         'console_scripts': ['santiago = santiago.util:main']
     },
+    install_requires=[
+        'requests',
+    ],
     license='License :: OSI Approved :: MIT License'
 )
