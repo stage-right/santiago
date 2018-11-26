@@ -70,10 +70,13 @@ class SantiagoCmd(Cmd):
     def do_domain(self, args):
         DomainCmd().onecmd(args)
 
-if __name__ == '__main__':
+def main(args=None):
     shell = SantiagoCmd()
     shell.prompt = '> '
     if len(argv) == 1:
         shell.cmdloop()
     else:
         shell.onecmd(" ".join(argv[1:]))
+
+if __name__ == '__main__':
+    main()
