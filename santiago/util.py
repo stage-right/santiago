@@ -35,6 +35,9 @@ def make_record(record_type, data, name=None, priority=None, port=None, weight=N
 
     return record
 
+def make_key(name, pubkey):
+    return {'name': name, 'public_key': pubkey}
+
 class DomainRecordCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domain_records(*args.split(" ")))
@@ -61,6 +64,13 @@ class DropletCmd(Cmd):
         print(santiago.new_droplet(make_droplet(*droplet_args), args.split(" ")[-1]))
     def do_delete(self, args):
         print(santiago.destroy_droplet(*args.split(" ")))
+
+class KeyCmd(Cmd):
+    def do_list(self, args):
+        print(santiago.all_keys(args))
+    def do_create(self, args):
+        key_args = args.split(" ")[:-1]
+        print(santiago.new_ssh_key(make_key(*key_args), args.split(" ")[-1]))
 
 class SantiagoCmd(Cmd):
     def do_quit(self, args):
