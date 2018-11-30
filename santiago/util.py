@@ -79,6 +79,8 @@ class SantiagoCmd(Cmd):
         DropletCmd().onecmd(args)
     def do_domain(self, args):
         DomainCmd().onecmd(args)
+    def do_keys(self, args):
+        KeyCmd().onecmd(args)
 
 def main(args=None):
     shell = SantiagoCmd()
