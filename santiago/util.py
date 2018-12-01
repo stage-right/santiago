@@ -41,6 +41,8 @@ def make_key(name, pubkey):
 class DomainRecordCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domain_records(*args.split(" ")))
+    def do_id(self, args):
+        print(santiago.domain_record_id(*args.split(" ")))
     def do_create(self, args):
         record_args = args.split(" ")[1:-1]
         print(santiago.new_domain_record(args.split(" ")[0], make_record(*record_args), args.split(" ")[-1]))

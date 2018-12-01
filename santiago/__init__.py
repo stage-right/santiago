@@ -19,6 +19,11 @@ def new_domain(domain, api_key=None):
 def all_domain_records(domain_id, api_key=None):
     return request('/domains/%s/records/' % domain_id, headers(api_key)).json()['domain_records']
 
+def domain_record_id(domain_id, record_name, api_key=None):
+    for record in all_domain_records(domain_id, api_key):
+        if record['name'] == record_name:
+            return record['id']
+
 def new_domain_record(domain_id, record, api_key=None):
     return request('/domains/%s/records/' % domain_id, headers(api_key), record, "post").json()['domain_record']
 
