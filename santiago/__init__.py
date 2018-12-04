@@ -46,3 +46,6 @@ def all_ssh_keys(api_key=None):
 
 def new_ssh_key(key, api_key=None):
     return request("/account/keys/", headers(api_key), key, "post").json()['ssh_key']
+
+def destroy_ssh_key(key_id, api_key=None):
+    return request("account/keys/%s", % key_id, headers(api_key), {}, "delete")
