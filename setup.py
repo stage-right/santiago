@@ -5,7 +5,7 @@ setup(
     version='0.1.0dev',
     packages=['santiago',],
     entry_points={
-        'console_scripts': ['santiago = santiago.util:main']
+        'console_scripts': ['santiago = santiago.__cli__:main']
     },
     install_requires=[
         'requests',
