@@ -38,6 +38,16 @@ def make_record(record_type, data, name=None, priority=None, port=None, weight=N
 def make_key(name, pubkey):
     return {'name': name, 'public_key': pubkey}
 
+def build_cmd(listfunc, createfunc, deletefunc):
+    class GeneratedCmd(Cmd):
+        def do_list(self, args):
+            print(listfunc(args))
+        def do_create(self, args):
+            print(createfunc(args))
+        def do_destroy(self, args):
+            print(destroyfunc(args))
+    return GeneratedCmd()
+
 class DomainRecordCmd(Cmd):
     def do_list(self, args):
         print(santiago.all_domain_records(*args.split(" ")))
