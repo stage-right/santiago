@@ -88,7 +88,7 @@ class SantiagoCmd(Cmd):
     def do_quit(self, args):
         raise SystemExit
     def do_droplet(self, args):
-        build_cmd(santiago.all_droplets, santiago.new_droplet, santiago.destroy_droplet).onecmd(args)
+        DropletCmd().onecmd(args)
     def do_domain(self, args):
         DomainCmd().onecmd(args)
     def do_keys(self, args):
