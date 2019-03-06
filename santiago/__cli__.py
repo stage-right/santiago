@@ -41,11 +41,11 @@ def make_key(name, pubkey):
 def build_cmd(listfunc, createfunc, deletefunc):
     class GeneratedCmd(Cmd):
         def do_list(self, args):
-            print(listfunc(args))
+            print(listfunc(*args.split(" ")))
         def do_create(self, args):
             print(createfunc(args))
         def do_destroy(self, args):
-            print(destroyfunc(args))
+            print(destroyfunc(*args.split(" ")))
     return GeneratedCmd()
 
 class DomainRecordCmd(Cmd):
