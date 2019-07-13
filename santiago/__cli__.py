@@ -79,7 +79,7 @@ class DropletCmd(Cmd):
 
 class KeyCmd(Cmd):
     def do_list(self, args):
-        print(santiago.all_keys(args))
+        print(santiago.all_ssh_keys(args))
     def do_create(self, args):
         key_args = args.split(" ")[:-1]
         print(santiago.new_ssh_key(make_key(*key_args), args.split(" ")[-1]))
