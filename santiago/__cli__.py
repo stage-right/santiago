@@ -18,7 +18,7 @@ def make_droplet(name, size, image, region,
     }
 
     if user_data: droplet['user_data'] = user_data
-    if ssh_key_ids: droplet['ssh_keys'] = ssh_key_ids.split(",")
+    if ssh_key_ids: droplet['ssh_keys'] = [int(id) for id in ssh_key_ids.split(",")]
 
     return droplet
 
